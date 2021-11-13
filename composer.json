@@ -1,0 +1,28 @@
+{
+    "name": "khokon/installer",
+    "description": "Laravel installer",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Khokon\\Installer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khorshed",
+            "email": "khorshed@gain.media"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Khokon\\Installer\\Providers\\InstallServiceProvider"
+            ]
+        }
+    }
+}
