@@ -13,7 +13,7 @@ class CheckIfNotInstallMiddleware
             if (!config('installer.installed'))
                 return $next($request);
             else
-                return redirect()->route('login');
+                return redirect()->route(config('installer.install'));
         }
         return $next($request);
     }
