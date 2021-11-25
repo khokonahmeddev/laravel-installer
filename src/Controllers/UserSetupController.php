@@ -26,11 +26,10 @@ class UserSetupController extends Controller
                 ->store()
                 ->finish();
 
-            return redirect()->route(config('installer.finish.install'))->with('success', 'User created successfully.');
+            return redirect()->route('login')->with('success', 'User created successfully.');
 
         } catch (\Exception $exception) {
-
-            return redirect()->route(config('installer.finish.install'))->with('error', 'User information wrong');
+            return redirect()->back()->with('error', 'User information wrong');
         }
 
 

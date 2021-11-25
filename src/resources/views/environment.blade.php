@@ -10,7 +10,11 @@
 
     <div class="container mt-3">
         <h4>Environment Setup</h4>
-
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
 
         <form method="post" action="{{route('database.connect')}}">
             @csrf

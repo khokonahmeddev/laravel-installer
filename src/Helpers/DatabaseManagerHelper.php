@@ -26,8 +26,10 @@ class DatabaseManagerHelper
 
         try {
             DB::connection()->getPdo();
+            return true;
+
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return false;
         }
 
     }
@@ -47,7 +49,7 @@ class DatabaseManagerHelper
             'APP_NAME=\'' . $request->get('app_name') . "'\n" .
             'APP_ENV=' . $request->get('environment', 'production') . "\n" .
             'APP_KEY=' . 'base64:' . base64_encode(Str::random(32)) . "\n" .
-            'APP_DEBUG=' . $request->get('app_debug', false) . "\n" .
+            'APP_DEBUG=' . $request->get('app_debug', 'true') . "\n" .
             'APP_URL=' . $request->get('app_url', 'http://localhost') . "\n\n" .
             'APP_LOCALE=' . $request->get('app_locale', 'en') . "\n" .
             'APP_FALLBACK_LOCALE=' . $request->get('app_locale', 'en') . "\n" .
@@ -75,6 +77,8 @@ class DatabaseManagerHelper
         if ($this->copyEnv()) {
             return file_put_contents($this->getEnvPath(), $envFileData);
         }
+
+        return true;
     }
 
     public function setEnvironmentValue($envKey, $envValue): bool

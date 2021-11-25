@@ -17,6 +17,10 @@ class DatabaseManagerRequest extends FormRequest
         return [
             'database_connection' => 'required',
             'database_hostname' => 'required',
+            'database_port' => 'required',
+            'database_name' => 'required',
+            'database_username' => 'required',
+            'database_password' => 'required',
         ];
 
     }

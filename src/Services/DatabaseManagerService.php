@@ -2,6 +2,7 @@
 
 namespace Khokon\Installer\Services;
 
+use Illuminate\Support\Facades\Artisan;
 use Khokon\Installer\Helpers\DatabaseManagerHelper;
 use Khokon\Installer\Helpers\StorageHelper;
 
@@ -15,6 +16,15 @@ class DatabaseManagerService extends InstallerBaseService
     {
         $this->databaseManager = $databaseManager;
         $this->storageManager = $storageHelper;
+    }
+
+    public function clearCaches(): self
+    {
+        Artisan::call('config:clear');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+
+        return $this;
     }
 
     public function setDatabaseConnection(): self
@@ -45,16 +55,15 @@ class DatabaseManagerService extends InstallerBaseService
         return $this;
     }
 
-    public function saveUserInformation(): self
-    {
-
-        return $this;
-    }
-
     public function storageLink(): self
     {
         $this->storageManager->link();
 
         return $this;
+    }
+
+    public function setDatabaseConfig(): bool
+    {
+        return $this->databaseManager->setDatabaseConfig();
     }
 }

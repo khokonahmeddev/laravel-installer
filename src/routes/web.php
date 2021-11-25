@@ -7,7 +7,7 @@ use Khokon\Installer\Controllers\InstallerController;
 use Khokon\Installer\Controllers\PermissionController;
 use Khokon\Installer\Controllers\UserSetupController;
 
-Route::group(['middleware' => 'not_install'], function () {
+Route::group(['middleware' => ['not_install', 'web']], function () {
 
     Route::get('install', [InstallerController::class, 'index'])
         ->name('install.view');

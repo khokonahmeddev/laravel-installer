@@ -5,9 +5,7 @@ return [
 
     'installed' => env('APP_INSTALLED', false),
 
-    'finish' => [
-        'install' => 'login' // redirect route
-    ],
+    'installer_finish' => 'login',
 
     /*
     |--------------------------------------------------------------------------

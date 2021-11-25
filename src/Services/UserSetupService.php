@@ -40,7 +40,6 @@ class UserSetupService extends InstallerBaseService
     {
         $this->databaseManager->setEnvironmentValue('APP_INSTALLED', 'true');
         Artisan::call('optimize:clear');
-        Artisan::call('queue:restart');
 
         return $this;
     }

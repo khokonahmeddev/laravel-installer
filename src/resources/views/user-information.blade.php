@@ -5,6 +5,11 @@
 @section('content')
     <div class="container-fluid p-5 bg-primary text-white text-center">
         <h1>User Information</h1>
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
     </div>
 
     <div class="container mt-3">

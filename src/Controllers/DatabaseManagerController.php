@@ -3,8 +3,8 @@
 namespace Khokon\Installer\Controllers;
 
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Khokon\Installer\Controllers\Requests\DatabaseManagerRequest;
 use Khokon\Installer\Services\DatabaseManagerService;
 
 
@@ -17,10 +17,13 @@ class DatabaseManagerController extends Controller
         $this->service = $service;
     }
 
-    public function setConnect(Request $request)
+    public function setConnect(DatabaseManagerRequest $request): \Illuminate\Http\RedirectResponse
     {
-
+        if (!$this->service->setDatabaseConfig()) {
+            return redirect()->back()->with('error', 'Database connection wrong');
+        }
         $this->service
+            ->clearCaches()
             ->setDatabaseConnection()
             ->saveFileWizard()
             ->setMigration()
