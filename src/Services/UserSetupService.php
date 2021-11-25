@@ -10,6 +10,7 @@ use Khokon\Installer\Helpers\DatabaseManagerHelper;
 class UserSetupService extends InstallerBaseService
 {
     protected DatabaseManagerHelper $databaseManager;
+
     public function __construct(DatabaseManagerHelper $helper)
     {
         $this->databaseManager = $helper;
@@ -17,9 +18,9 @@ class UserSetupService extends InstallerBaseService
 
     public function store(): self
     {
-        $users = User::all();
-        if (count($users) > 0) {
-            $user = User::query()->first();
+        $user = User::query();
+        if ($user->count() > 0) {
+            $user = $user->first();
             $user->update([
                 'name' => request()->get('name'),
                 'email' => request()->get('email'),
